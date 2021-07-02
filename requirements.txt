@@ -1,6 +1,6 @@
 streamlit
 opencv-contrib-python-headless
-keras
+tensorflow-cpu
 numpy == 1.20.3
 mtcnn
 sklearn
