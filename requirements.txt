@@ -1,0 +1,8 @@
+streamlit
+opencv-contrib-python-headless
+tensorflow-cpu
+numpy == 1.20.3
+mtcnn
+sklearn
+scipy
+pymongo
