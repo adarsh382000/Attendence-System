@@ -73,7 +73,7 @@ def test_person(img):
     name  = 'unknown'
     dist = float('inf')
     cursor = db.embd.find()
-    dist = float(inf)
+    dist = 1000000.0
     name = "unknown"
     if len(list(cursor)) > 0:
         for i in cursor:
@@ -94,7 +94,7 @@ def main():
   st.write("**Using FaceNet and MongoDB**")
   
 
-  activities = ["Admin Login", "Mark Attendence", "Admin Registeration"]
+  activities = ["Mark Attendence", "Admin Login", "Admin Registeration"]
   choice = st.sidebar.selectbox("Menu", activities)
 
   if choice == "Mark Attendence":
