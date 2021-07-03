@@ -83,7 +83,7 @@ def test_person(img):
             encdatabase = np.array(encdatabase)
             d = cosine(enc,encdatabase)
             dic[i['Name']] = d 
-            if d < 0.4 and d < dist:
+            if d < 0.5 and d < dist:
                 name = i['Name']
                 dist = d
         return dic
