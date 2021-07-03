@@ -79,11 +79,7 @@ def test_person(img):
         for i in cursor:
             encdatabase = i['embedding']
             encdatabase = np.array(encdatabase)
-            d = cosine(enc,encdatabase)
-            if d < 0.4 and d < dist:
-                name = i['Name']
-                dist = d
-        return (name,dist)
+        return encdatabase
     else:
         return -2
   else:
