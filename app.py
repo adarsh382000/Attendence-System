@@ -86,7 +86,7 @@ def main():
   st.write("**Using FaceNet and MongoDB**")
   
 
-  activities = ["Mark Attendence", "Admin Login", "Admin Registeration"]
+  activities = ["Admin Login", "Mark Attendence", "Admin Registeration"]
   choice = st.sidebar.selectbox("Menu", activities)
 
   if choice == "Mark Attendence":
