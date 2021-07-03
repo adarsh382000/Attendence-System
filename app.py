@@ -101,7 +101,6 @@ def main():
     if uploaded_file is not None:
       file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
       image = cv2.imdecode(file_bytes, 1)
-      uploaded_file.seek(0)
       if st.button("Proceed"):
          res = test_person(image)
          if res == -2:
