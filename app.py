@@ -73,14 +73,17 @@ def test_person(img):
     name  = 'unknown'
     dist = float('inf')
     cursor = db.embd.find()
+    dist = float(inf)
+    name = "unknown"
     if len(list(cursor)) > 0:
         for i in cursor:
             encdatabase = i['embedding']
-            name = i['Name']
             encdatabase = np.array(encdatabase)
             d = cosine(enc,encdatabase)
-            new_enc[name] = d
-            return new_enc
+            if d < 0.4 and d < dist:
+                name = i['Name']
+                dist = d
+        return name
     else:
         return -2
   else:
