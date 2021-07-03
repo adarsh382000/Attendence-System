@@ -11,7 +11,7 @@ import pymongo
 import streamlit as st
 import gdown
 
-client = MongoClient(process.env.MONGODB_URI)
+client = MongoClient(st.secrets["db_address"])
 db = client['Attendence']
 
 try:
