@@ -81,10 +81,11 @@ def test_person(img):
             encdatabase = i['embedding']
             encdatabase = np.array(encdatabase)
             d = cosine(enc,encdatabase)
+            dic[i['Name']] = d 
             if d < 0.4 and d < dist:
                 name = i['Name']
                 dist = d
-        return name
+        return dic
     else:
         return -2
   else:
@@ -107,13 +108,13 @@ def main():
       image = cv2.imdecode(file_bytes, 1)
       if st.button("Proceed"):
          res = test_person(image)
-         if res == -2:
-           st.write("Database empty")
+         if type(res) == dict:
+           st.write("Attendence Marked of: ")
+           st.write(res)
          elif res == -1:
            st.write("No face found, try another image")
          else:
-           st.write("Attendence Marked of: ")
-           st.write(res)
+           st.write("Database empty")
   
   elif choice == "Admin Login":
     st.write("Enter your Credentials")
