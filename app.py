@@ -76,6 +76,7 @@ def test_person(img):
     li = list(cursor)
     dist = 1000000.0
     name = "unknown"
+    dic = {}
     if len(li) > 0:
         for i in li:
             encdatabase = i['embedding']
