@@ -115,6 +115,12 @@ def main():
     st.write("Enter your Credentials")
     userid = st.text_input("UserID: ")
     password = st.text_input("Password: ", type="password")
+    
+    st.write("Upload the Image of Person to Register them in DataBase")
+    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
+    if uploaded_file is not None:
+        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+        image = cv2.imdecode(file_bytes, 1)
 
     if st.button("Proceed"):
         cursor = db.Admins.find({'_id' : userid})
@@ -123,21 +129,13 @@ def main():
             pas = i['password']
         if len(li) > 0:
             if str(pas) == str(password):
-                st.write("Upload the Image of Person to Register them in DataBase")
-                uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-                if uploaded_file is None:
-                    st.write("none")
-                if uploaded_file is not None:
-                    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-                    image = cv2.imdecode(file_bytes, 1)
-
-                    if st.button('Register'):
-                        name = st.text_input("Enter the person's name: ")
-                        res = add_new_person(name,image)
-                        if res == 0:
-                            st.write("Successfully Registered")
-                        else:
-                            st.write("No face found, try another image")
+                name = st.text_input("Enter the person's name: ")
+                if st.button("Register"):
+                    res = add_new_person(name,image)
+                    if res == 0:
+                        st.write("Successfully Registered")
+                    else:
+                        st.write("No face found, try another image")
 
             else:
                 st.write("Wrong Password!, try again")
