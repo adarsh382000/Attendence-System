@@ -80,15 +80,15 @@ def test_person(img):
         for i in li:
             encdatabase = i['embedding']
             encdatabase = np.array(encdatabase)
-            #d = cosine(enc,encdatabase)
-            #if d < 0.4 and d < dist:
-                #name = i['Name']
-                #dist = d
-        return encdatabase
+            d = cosine(enc,encdatabase)
+            if d < 0.4 and d < dist:
+                name = i['Name']
+                dist = d
+        return name
     else:
-        return [-2]
+        return -2
   else:
-    return [-1,-1]
+    return -1
 
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
@@ -107,12 +107,12 @@ def main():
       image = cv2.imdecode(file_bytes, 1)
       if st.button("Proceed"):
          res = test_person(image)
-         if len(res) == 1:
+         if res == -2:
            st.write("Database empty")
-         elif len(res) == 2:
+         elif res == -1:
            st.write("No face found, try another image")
          else:
-           st.write("Attendence Marked")
+           st.write("Attendence Marked of: ")
            st.write(res)
   
   elif choice == "Admin Login":
