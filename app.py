@@ -121,6 +121,8 @@ def main():
     if uploaded_file is not None:
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
         image = cv2.imdecode(file_bytes, 1)
+        
+    name = st.text_input("Enter the person's name: ")
 
     if st.button("Proceed"):
         cursor = db.Admins.find({'_id' : userid})
@@ -128,8 +130,7 @@ def main():
         for i in li:
             pas = i['password']
         if len(li) > 0:
-            if str(pas) == str(password):
-                name = st.text_input("Enter the person's name: ")
+            if pas == password:
                 if st.button("Register"):
                     res = add_new_person(name,image)
                     if res == 0:
