@@ -131,12 +131,11 @@ def main():
             pas = i['password']
         if len(li) > 0:
             if pas == password:
-                if st.button("Register"):
-                    res = add_new_person(name,image)
-                    if res == 0:
-                        st.write("Successfully Registered")
-                    else:
-                        st.write("No face found, try another image")
+                res = add_new_person(name,image)
+                if res == 0:
+                    st.write("Successfully Registered")
+                else:
+                    st.write("No face found, try another image")
 
             else:
                 st.write("Wrong Password!, try again")
