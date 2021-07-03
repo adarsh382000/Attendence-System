@@ -1,5 +1,5 @@
 streamlit
-opencv-contrib-python-headless
+opencv-python
 tensorflow-cpu
 numpy == 1.20.3
 mtcnn
