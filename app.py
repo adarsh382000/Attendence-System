@@ -14,11 +14,16 @@ import gdown
 client = MongoClient(st.secrets["db_address"])
 db = client['Attendence']
 
-try:
-    gdown.download('https://drive.google.com/uc?id=1oOqvp0xR01oW_1jLnzY5jubkf7vR0B29', 'model.h5', quiet=False)
-    model = keras.models.load_model('model.h5')
-except Exception:
-    st.write("Error loading predictive model")
+@st.cache
+def modelex():
+    try:
+        gdown.download('https://drive.google.com/uc?id=1oOqvp0xR01oW_1jLnzY5jubkf7vR0B29', 'model.h5', quiet=False)
+        model = keras.models.load_model('model.h5')
+        return model
+    except Exception:
+        st.write("Error loading predictive model")
+
+model = modelex()
 
 def detect_face(ad):
   detector = mtcnn.MTCNN()
