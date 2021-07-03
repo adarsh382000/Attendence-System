@@ -11,7 +11,7 @@ import pymongo
 import streamlit as st
 import gdown
 
-client = MongoClient('mongodb+srv://adarsh:382000@cluster0.ri62m.mongodb.net/Attendence?retryWrites=true&w=majority')
+client = MongoClient(process.env.MONGODB_URI)
 db = client['Attendence']
 
 try:
