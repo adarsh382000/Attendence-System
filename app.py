@@ -86,9 +86,9 @@ def test_person(img):
                 #dist = d
         return encdatabase
     else:
-        return -2
+        return [-2]
   else:
-    return -1
+    return [-1,-1]
 
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
@@ -107,13 +107,13 @@ def main():
       image = cv2.imdecode(file_bytes, 1)
       if st.button("Proceed"):
          res = test_person(image)
-         if res == -2:
+         if len(res) == 1:
            st.write("Database empty")
-         elif res == -1:
+         elif len(res) == 2:
            st.write("No face found, try another image")
          else:
            st.write("Attendence Marked")
-           st.write(res[0],res[1])
+           st.write(res)
   
   elif choice == "Admin Login":
     st.write("Enter your Credentials")
