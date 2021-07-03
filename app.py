@@ -15,7 +15,7 @@ client = MongoClient(st.secrets["db_address"])
 db = client['Attendence']
 
 @st.cache
-def modelex():
+def face_recognition_model():
     try:
         gdown.download('https://drive.google.com/uc?id=1oOqvp0xR01oW_1jLnzY5jubkf7vR0B29', 'model.h5', quiet=False)
         model = keras.models.load_model('model.h5')
@@ -23,7 +23,7 @@ def modelex():
     except Exception:
         st.write("Error loading predictive model")
 
-model = modelex()
+model = face_recognition_model()
 
 def detect_face(ad):
   detector = mtcnn.MTCNN()
