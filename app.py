@@ -109,6 +109,7 @@ def main():
            st.write("No face found, try another image")
          else:
            st.write("Attendence Marked")
+           st.write(res)
            st.image(image, use_column_width = True)
   
   elif choice == "Admin Login":
