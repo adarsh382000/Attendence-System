@@ -9,12 +9,14 @@ from scipy.spatial.distance import cosine
 from pymongo import MongoClient
 import pymongo
 import streamlit as st
+import gdown
 
 client = MongoClient('mongodb+srv://adarsh:382000@cluster0.ri62m.mongodb.net/Attendence?retryWrites=true&w=majority')
 db = client['Attendence']
 
 try:
-    model = keras.models.load_model('/content/drive/MyDrive/titanic/facenet_keras.h5')
+    gdown.download('https://drive.google.com/uc?id=1oOqvp0xR01oW_1jLnzY5jubkf7vR0B29', 'model.h5', quiet=False)
+    model = keras.models.load_model('model.h5')
 except Exception:
     st.write("Error loading predictive model")
 
