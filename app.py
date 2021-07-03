@@ -83,7 +83,7 @@ def test_person(img):
             if d < 0.4 and d < dist:
                 name = i['Name']
                 dist = d
-        return name
+        return (name,dist)
     else:
         return -2
   else:
@@ -112,8 +112,7 @@ def main():
            st.write("No face found, try another image")
          else:
            st.write("Attendence Marked")
-           st.write(res)
-           st.image(image, use_column_width = True)
+           st.write(res[0],res[1])
   
   elif choice == "Admin Login":
     st.write("Enter your Credentials")
