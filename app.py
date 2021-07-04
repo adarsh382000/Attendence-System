@@ -103,7 +103,7 @@ def main():
   if choice == "Mark Attendence":
     st.write("Please use image with frontal angle and image should be well lit")
     st.write("Example image:")
-    st.image(image.jpeg)
+    st.image(image.jpg)
     uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
     
     if uploaded_file is not None:
