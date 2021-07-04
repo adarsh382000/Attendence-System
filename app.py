@@ -144,6 +144,10 @@ def main():
     name = st.text_input("Enter the person's name: ")
 
     if st.button("Proceed"):
+        if len(name) == 0:
+            st.write("Enter a valid name")
+            st.stop()
+
         cursor = db.Admins.find({'_id' : userid})
         li = list(cursor)
         for i in li:
