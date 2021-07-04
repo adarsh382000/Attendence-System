@@ -119,8 +119,8 @@ def main():
   
   elif choice == "Admin Login":
     st.write("Enter your Credentials")
-    userid = st.text_input("UserID: ")
-    password = st.text_input("Password: ", type="password")
+    userid = st.text_input("UserID(Case-sensitive):")
+    password = st.text_input("Password:", type="password")
     
     st.write("Upload the Image of Person to Register them in DataBase")
     uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
@@ -152,8 +152,8 @@ def main():
 
   elif choice == "Admin Registeration":
     st.write("Enter the Credentials to register as an Admin")
-    userid = st.text_input("UserID: ")
-    password = st.text_input("Password: ", type="password")
+    userid = st.text_input("UserID(Case-sensitive):")
+    password = st.text_input("Password:", type="password")
 
     if st.button("Proceed"):
         try:
