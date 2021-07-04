@@ -161,8 +161,8 @@ def main():
 
     if st.button("Proceed"):
         if len(userid) == 0 or len(password) == 0:
-        st.write("Please enter valid credentials")
-        st.stop()
+            st.write("Please enter valid credentials")
+            st.stop()
         try:
             db.Admins.insert_one({'_id' : userid, 'password' : password})
             st.write("Successfully Registered")
