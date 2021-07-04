@@ -159,11 +159,10 @@ def main():
     userid = st.text_input("UserID(Case-sensitive):")
     password = st.text_input("Password:", type="password")
 
-    if len(userid) == 0 or len(password) == 0:
+    if st.button("Proceed"):
+        if len(userid) == 0 or len(password) == 0:
         st.write("Please enter valid credentials")
         st.stop()
-
-    if st.button("Proceed"):
         try:
             db.Admins.insert_one({'_id' : userid, 'password' : password})
             st.write("Successfully Registered")
