@@ -16,7 +16,7 @@ def data():
        client = MongoClient(st.secrets["db_address"])
        db = client['Attendence']
        return db
-   except Exception:
+    except Exception:
        st.write("Error connecting to the Database")
        st.stop()
 
