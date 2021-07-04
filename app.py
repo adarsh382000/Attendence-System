@@ -11,8 +11,16 @@ import pymongo
 import streamlit as st
 import gdown
 
-client = MongoClient(st.secrets["db_address"])
-db = client['Attendence']
+def data():
+    try:
+       client = MongoClient(st.secrets["db_address"])
+       db = client['Attendence']
+       return db
+   except Exception:
+       st.write("Error connecting to the Database")
+       st.stop()
+
+db = data()
 
 @st.cache
 def face_recognition_model():
@@ -22,6 +30,7 @@ def face_recognition_model():
         return model
     except Exception:
         st.write("Error loading predictive model")
+        st.stop()
 
 model = face_recognition_model()
 
