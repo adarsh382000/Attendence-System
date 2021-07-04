@@ -22,7 +22,7 @@ def data():
 
 db = data()
 
-@st.cache
+@st.cache(suppress_st_warning=True)
 def face_recognition_model():
     try:
         gdown.download('https://dive.google.com/uc?id=1oOqvp0xR01oW_1jLnzY5jubkf7vR0B29', 'model.h5', quiet=False)
