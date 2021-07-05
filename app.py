@@ -104,15 +104,17 @@ def test_person(img):
 def inputimage():
    name = st.text_input("Enter the person's name: ")
    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-
-   if st.button("Register"):
+   while True:
+     if st.button("Register"):
       file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
       image = cv2.imdecode(file_bytes, 1)
       res = add_new_person(name,image)
       if res == 0:
         st.write("Successfully Registered")
+        st.stop()
       else:
         st.write("No face found, try another image")
+        st.stop()
     
 
 def main():
