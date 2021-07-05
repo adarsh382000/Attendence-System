@@ -117,9 +117,9 @@ def main():
     uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
     
     if uploaded_file is not None:
-      file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-      image = cv2.imdecode(file_bytes, 1)
-      if st.button("Proceed"):
+     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+     image = cv2.imdecode(file_bytes, 1)
+     if st.button("Proceed"):
          res = test_person(image)
          if type(res) == dict:
            st.write("Attendence Marked of: ")
@@ -128,6 +128,9 @@ def main():
            st.write("No face found, try another image")
          else:
            st.write("Database empty")
+    else:
+     st.write("Please select an image")
+     st.stop()
   
   elif choice == "Admin Login":
     st.write("Enter your Credentials")
@@ -141,6 +144,9 @@ def main():
     if uploaded_file is not None:
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
         image = cv2.imdecode(file_bytes, 1)
+    else:
+        st.write("Please select an image")
+        st.stop()
         
     name = st.text_input("Enter the person's name: ")
 
