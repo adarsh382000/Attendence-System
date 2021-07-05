@@ -116,7 +116,7 @@ def inputimage():
       else:
         st.write("No face found, try another image")
         st.stop()
-    time.sleep(30)
+      time.sleep(30)
 
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
