@@ -114,9 +114,9 @@ def uploadimg():
             st.stop()
         res = add_new_person(name,image)
         if res == 0:
-            return 0
+            st.write("Successfully Registered")
         else:
-            return -1
+            st.write("No Face found, try another image")
         
     
 
@@ -181,11 +181,7 @@ def main():
 
            # else:
             #    st.write("Wrong Password!, try again")
-                 res = uploadimg()
-                 if res == 1:
-                        st.write("Successfully Registered")
-                 else:
-                        st.write("No Face found, try another image")
+                 uploadimg()
 
         else:
             st.write('UserID not registered, goto Admin Regesitration tab')
