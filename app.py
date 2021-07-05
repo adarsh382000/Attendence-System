@@ -122,7 +122,6 @@ def inputimage():
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
   st.write("**Using FaceNet and MongoDB**")
-  st.wait()
 
   activities = ["Mark Attendence", "Admin Login", "Admin Registeration"]
   choice = st.sidebar.selectbox("Menu", activities)
