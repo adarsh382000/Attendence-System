@@ -157,10 +157,9 @@ def main():
             if pas == password:
                 res = add_new_person(name,image)
                 if res == 0:
-                    #st.write("Successfully Registered")
+                    st.write("Successfully Registered")
                 else:
                     st.write("No face found, try another image")
-                 inputimage()
 
             else:
                 st.write("Wrong Password!, try again")
