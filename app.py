@@ -105,7 +105,6 @@ def test_person(img):
 def inputimage():
    name = st.text_input("Enter the person's name: ")
    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-   time.sleep(30)
 
    if st.button("Register"):
       file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
@@ -117,7 +116,7 @@ def inputimage():
       else:
         st.write("No face found, try another image")
         st.stop()
-    
+    time.sleep(30)
 
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
