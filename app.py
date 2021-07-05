@@ -102,11 +102,11 @@ def test_person(img):
     return -1
 
 def uploadimg():
+    name = st.text_input("Enter the person's name: ")
     uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
     if uploaded_file is not None:
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
         image = cv2.imdecode(file_bytes, 1)
-    name = st.text_input("Enter the person's name: ")
     
     if st.button("Register"):
         if len(name) == 0:
