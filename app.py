@@ -101,6 +101,25 @@ def test_person(img):
   else:
     return -1
 
+def uploadimg():
+    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
+    if uploaded_file is not None:
+        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+        image = cv2.imdecode(file_bytes, 1)
+    name = st.text_input("Enter the person's name: ")
+    
+    if st.button("Proceed"):
+        if len(name) == 0:
+            st.write("Enter a valid name")
+            st.stop()
+        res = add_new_person(name,image)
+        if res == 0:
+            return 0
+        else:
+            return -1
+        
+    
+
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
   st.write("**Using FaceNet and MongoDB**")
@@ -133,20 +152,20 @@ def main():
     userid = st.text_input("UserID(Case-sensitive):")
     password = st.text_input("Password:", type="password")
     
-    st.write("Upload the Image of Person to Register them in DataBase")
-    st.write("Example image: ")
-    st.image('Image.jpg',use_column_width = 'auto')
-    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-    if uploaded_file is not None:
-        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-        image = cv2.imdecode(file_bytes, 1)
+    #st.write("Upload the Image of Person to Register them in DataBase")
+    #st.write("Example image: ")
+    #st.image('Image.jpg',use_column_width = 'auto')
+    #uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
+    #if uploaded_file is not None:
+        #file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+        #image = cv2.imdecode(file_bytes, 1)
         
-    name = st.text_input("Enter the person's name: ")
+    #name = st.text_input("Enter the person's name: ")
 
     if st.button("Proceed"):
-        if len(name) == 0:
-            st.write("Enter a valid name")
-            st.stop()
+        #if len(name) == 0:
+            #st.write("Enter a valid name")
+            #st.stop()
 
         cursor = db.Admins.find({'_id' : userid})
         li = list(cursor)
@@ -154,14 +173,19 @@ def main():
             pas = i['password']
         if len(li) > 0:
             if pas == password:
-                res = add_new_person(name,image)
-                if res == 0:
-                    st.write("Successfully Registered")
-                else:
-                    st.write("No face found, try another image")
+                #res = add_new_person(name,image)
+                #if res == 0:
+                    #st.write("Successfully Registered")
+                #else:
+                 #   st.write("No face found, try another image")
 
-            else:
-                st.write("Wrong Password!, try again")
+           # else:
+            #    st.write("Wrong Password!, try again")
+                 res = uploadimg()
+                 if res == 1:
+                        st.write("Successfully Registered")
+                 else:
+                        st.write("No Face found, try another image")
 
         else:
             st.write('UserID not registered, goto Admin Regesitration tab')
