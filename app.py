@@ -108,7 +108,7 @@ def uploadimg():
         image = cv2.imdecode(file_bytes, 1)
     name = st.text_input("Enter the person's name: ")
     
-    if st.button("Proceed"):
+    if st.button("Register"):
         if len(name) == 0:
             st.write("Enter a valid name")
             st.stop()
