@@ -10,6 +10,7 @@ from pymongo import MongoClient
 import pymongo
 import streamlit as st
 import gdown
+import time
 
 def data():
     try:
@@ -104,9 +105,9 @@ def test_person(img):
 def inputimage():
    name = st.text_input("Enter the person's name: ")
    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-   but = st.button("Register")
-   while True:
-     if but:
+   time.sleep(30)
+
+   if st.button("Register")
       file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
       image = cv2.imdecode(file_bytes, 1)
       res = add_new_person(name,image)
@@ -121,7 +122,7 @@ def inputimage():
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
   st.write("**Using FaceNet and MongoDB**")
-  
+  st.wait()
 
   activities = ["Mark Attendence", "Admin Login", "Admin Registeration"]
   choice = st.sidebar.selectbox("Menu", activities)
