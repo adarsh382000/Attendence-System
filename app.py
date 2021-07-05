@@ -104,8 +104,9 @@ def test_person(img):
 def inputimage():
    name = st.text_input("Enter the person's name: ")
    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
+   but = st.button("Register")
    while True:
-     if st.button("Register"):
+     if but:
       file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
       image = cv2.imdecode(file_bytes, 1)
       res = add_new_person(name,image)
