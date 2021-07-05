@@ -102,7 +102,7 @@ def test_person(img):
     return -1
 
 def inputimage():
-   name = st.text_box("Enter the person's name: ")
+   name = st.text_input("Enter the person's name: ")
    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
 
    if st.button("Register"):
