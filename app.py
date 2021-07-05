@@ -107,7 +107,7 @@ def inputimage():
    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
    time.sleep(30)
 
-   if st.button("Register")
+   if st.button("Register"):
       file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
       image = cv2.imdecode(file_bytes, 1)
       res = add_new_person(name,image)
