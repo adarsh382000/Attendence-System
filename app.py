@@ -138,36 +138,34 @@ def main():
     userid = st.text_input("UserID(Case-sensitive):")
     password = st.text_input("Password:", type="password")
     
-    button1 = st.empty()
-    ss = SessionState.get(button1 = False)
+    st.write("Upload the Image of Person to Register them in Database")
+    st.write("Example image: ")
+    st.image('Image.jpg',use_column_width = 'auto')
+    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
     
-    if button1.button("Proceed"):
-        ss.button1 = True
+    if uploaded_file is not None:        
+        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+        image = cv2.imdecode(file_bytes, 1)
+    else:
+        st.write("Please Upload an image")
+        
+    name = st.text_input("Enter the person's name: ")
     
-    if ss.button1:
-        #if len(name) == 0:
-         #   st.write("Enter a valid name")
-          #  st.stop()
+    if st.button("Proceed"):
+        if len(name) == 0:
+            st.write("Enter a valid name")
+            st.stop()
         cursor = db.Admins.find({'_id' : userid})
         li = list(cursor)
         for i in li:
             pas = i['password']
         if len(li) > 0:
             if pas == password:
-                st.write("Upload the Image of Person to Register them in Database")
-                st.write("Example image: ")
-                st.image('Image.jpg',use_column_width = 'auto')
-                uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-                name = st.text_input("Enter the person's name: ")
-                if uploaded_file is not None:        
-                    if st.button("Register"):
-                       file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-                       image = cv2.imdecode(file_bytes, 1)
-                       res = add_new_person(name,image)
-                       if res == 0:
-                          st.write("Successfully Registered")
-                       else:
-                          st.write("No face found, try another image")
+                res = add_new_person(name,image)
+                if res == 0:
+                    st.write("Successfully Registered")
+                else:
+                    st.write("No face found, try another image")
      
             else:
                 st.write("Wrong Password!, try again")
