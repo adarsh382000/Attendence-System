@@ -135,10 +135,12 @@ def main():
   
   elif choice == "Admin Login":
     button1 = st.empty()
-    ss = SessionState.get(button1 = False)
+    
     st.write("Enter your Credentials")
     userid = st.text_input("UserID(Case-sensitive):")
     password = st.text_input("Password:", type="password")
+    
+    ss = SessionState.get(button1 = False)
     
     if button1.button("Proceed"):
         ss.button1 = True
