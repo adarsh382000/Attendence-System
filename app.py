@@ -22,11 +22,12 @@ def data():
        st.stop()
 
 db = data()
+train_model = st.secrets["train_model"]
 
 @st.cache(suppress_st_warning=True)
 def face_recognition_model():
     try:
-        gdown.download(st.secrets["train_model"], 'model.h5', quiet=False)
+        gdown.download(train_model, 'model.h5', quiet=False)
         model = keras.models.load_model('model.h5')
         return model
     except Exception:
