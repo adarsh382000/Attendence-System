@@ -168,8 +168,6 @@ def main():
                           st.write("Successfully Registered")
                        else:
                           st.write("No face found, try another image")
-                    else:
-                       st.write("Please Upload an image")
      
             else:
                 st.write("Wrong Password!, try again")
