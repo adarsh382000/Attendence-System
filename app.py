@@ -158,11 +158,11 @@ def main():
                 st.write("Example image: ")
                 st.image('Image.jpg',use_column_width = 'auto')
                 uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
+                name = st.text_input("Enter the person's name: ")
                 if uploaded_file is not None:        
                     if st.button("Register"):
                        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
                        image = cv2.imdecode(file_bytes, 1)
-                       name = st.text_input("Enter the person's name: ")
                        res = add_new_person(name,image)
                        if res == 0:
                           st.write("Successfully Registered")
