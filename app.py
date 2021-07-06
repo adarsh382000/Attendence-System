@@ -159,16 +159,16 @@ def main():
                 uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
                 if uploaded_file is not None:        
                     if st.button("Register"):
-                    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-                    image = cv2.imdecode(file_bytes, 1)
-                    name = st.text_input("Enter the person's name: ")
-                    res = add_new_person(name,image)
-                    if res == 0:
-                        st.write("Successfully Registered")
+                       file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+                       image = cv2.imdecode(file_bytes, 1)
+                       name = st.text_input("Enter the person's name: ")
+                       res = add_new_person(name,image)
+                       if res == 0:
+                          st.write("Successfully Registered")
+                       else:
+                          st.write("No face found, try another image")
                     else:
-                        st.write("No face found, try another image")
-                else:
-                     st.write("Please Upload an image")
+                       st.write("Please Upload an image")
      
             else:
                 st.write("Wrong Password!, try again")
