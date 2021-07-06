@@ -148,6 +148,7 @@ def main():
         image = cv2.imdecode(file_bytes, 1)
     else:
         st.write("Please Upload an image")
+        st.stop()
         
     name = st.text_input("Enter the person's name: ")
     
