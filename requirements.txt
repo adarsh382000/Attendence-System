@@ -8,3 +8,4 @@ scipy
 pymongo
 gdown
 dnspython
+SessionState
