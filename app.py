@@ -105,13 +105,12 @@ def test_person(img):
 
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
-  st.write("**Using FaceNet and MongoDB**")
 
   activities = ["Mark Attendence", "Admin Login", "Admin Registeration"]
   choice = st.sidebar.selectbox("Menu", activities)
 
   if choice == "Mark Attendence":
-    st.write("Please use image with frontal angle and image should be well lit")
+    st.write("**Please use image with frontal angle and image should be well lit**")
     st.write("Example image:")
     st.image('Image.jpg',use_column_width = 'auto')
     uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
@@ -133,7 +132,7 @@ def main():
      st.stop()
   
   elif choice == "Admin Login":
-    st.write("Enter your Credentials")
+    st.write("**Enter your Credentials**")
     userid = st.text_input("UserID(Case-sensitive):")
     password = st.text_input("Password:", type="password")
     
@@ -175,7 +174,7 @@ def main():
 
 
   elif choice == "Admin Registeration":
-    st.write("Enter the Credentials to register as an Admin")
+    st.write("**Enter the Credentials to register as an Admin**")
     userid = st.text_input("UserID(Case-sensitive):")
     password = st.text_input("Password:", type="password")
 
