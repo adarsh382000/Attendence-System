@@ -122,8 +122,11 @@ def main():
          res = test_person(image)
          if type(res) == dict:
            #st.write("Attendence Marked of: ")
-           for i,k in res.items():
+           tot = sum(res.values())
+           for i,j in res.items():
+                my_bar = st.progress(0)
                 st.write(i)
+                my_bar.progress((k/tot)*100)
          elif res == -1:
            st.write("No face found, try another image")
          else:
