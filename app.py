@@ -123,6 +123,7 @@ def main():
          if type(res) == dict:
            #st.write("Attendence Marked of: ")
            tot = sum(res.values())
+           st.write(tot)
            for i,j in res.items():
                 my_bar = st.progress(0)
                 st.write(i)
