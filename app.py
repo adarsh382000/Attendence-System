@@ -124,6 +124,7 @@ def main():
            #st.write("Attendence Marked of: ")
            tot = max(res.values()) + 0.10
            for i,j in res.items():
+                st.write("------------------------------------------------------------------------------")
                 st.write("Name: " + i)
                 st.write("Distance(lower is better): " + str(j))
                 st.write("Similarity(higher is better): ")
