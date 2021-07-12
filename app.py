@@ -121,8 +121,9 @@ def main():
      if st.button("Proceed"):
          res = test_person(image)
          if type(res) == dict:
-           st.write("Attendence Marked of: ")
-           st.write(res)
+           #st.write("Attendence Marked of: ")
+           for i,k in res.items():
+                st.write(i)
          elif res == -1:
            st.write("No face found, try another image")
          else:
