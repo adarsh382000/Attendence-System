@@ -125,7 +125,8 @@ def main():
            tot = max(res.values()) + 0.10
            for i,j in res.items():
                 st.write("Name: " + i)
-                st.write("Similarity: " + str(j))
+                st.write("Distance(lower is better): " + str(j))
+                st.write("Similarity(higher is better): ")
                 my_bar = st.progress(0)
                 my_bar.progress(1-(j/tot))
          elif res == -1:
