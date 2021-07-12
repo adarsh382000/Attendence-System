@@ -138,49 +138,7 @@ def main():
      st.write("Please select an image")
      st.stop()
         
-  """
-  elif choice == "Admin Login":
-    st.write("**Enter your Credentials**")
-    userid = st.text_input("UserID(Case-sensitive):")
-    password = st.text_input("Password:", type="password")
-    
-    st.write("Upload the Image of Person to Register them in Database")
-    st.write("Example image: ")
-    st.image('Image.jpg',use_column_width = 'auto')
-    uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-    
-    if uploaded_file is not None:        
-        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-        image = cv2.imdecode(file_bytes, 1)
-    else:
-        st.write("Please Upload an image")
-        st.stop()
-        
-    name = st.text_input("Enter the person's name: ")
-    
-    if st.button('Submit'):
-        if len(name) == 0:
-            st.write("Enter a valid name")
-            st.stop()
-        cursor = db.Admins.find({'_id' : userid})
-        li = list(cursor)
-        for i in li:
-            pas = i['password']
-        if len(li) > 0:
-            if pas == password:
-                res = add_new_person(name,image)
-                if res == 0:
-                    st.write("Successfully Registered")
-                else:
-                    st.write("No face found, try another image")
-     
-            else:
-                st.write("Wrong Password!, try again")
 
-        else:
-            st.write('UserID not registered, goto Admin Registration tab')
-
-  """
 
   elif choice == "Admin Login":
     st.session_state.useridss = ''
