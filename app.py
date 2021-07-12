@@ -179,7 +179,7 @@ def main():
             else:
                 st.write("Wrong Password!, try again")
         else:
-            st.write('UserID not registered, goto Admin Registration tab')
+            st.write('Enter valid username, or register a new one')
     
   elif choice == "Admin Registeration":
     st.write("**Enter the Credentials to register as an Admin**")
