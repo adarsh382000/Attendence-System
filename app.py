@@ -123,11 +123,10 @@ def main():
          if type(res) == dict:
            #st.write("Attendence Marked of: ")
            tot = max(res.values()) + 0.10
-           st.write(tot)
            for i,j in res.items():
-                my_bar = st.progress(0)
                 st.write("Name: " + i)
                 st.write("Similarity: " + str(j))
+                my_bar = st.progress(0)
                 my_bar.progress(1-(j/tot))
          elif res == -1:
            st.write("No face found, try another image")
