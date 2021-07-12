@@ -126,9 +126,8 @@ def main():
            st.write(tot)
            for i,j in res.items():
                 my_bar = st.progress(0)
-                st.write(i)
-                st.write(1-(j/tot))
-                st.write(j)
+                st.write("Name: "+i)
+                st.write("Similarity: "+j)
                 my_bar.progress(1-(j/tot))
          elif res == -1:
            st.write("No face found, try another image")
