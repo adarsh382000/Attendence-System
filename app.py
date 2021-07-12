@@ -140,9 +140,8 @@ def main():
   
   elif choice == "Admin Login":
     st.write("**Enter your Credentials**")
-    form = st.form(key='login')
-    userid = form.text_input("UserID(Case-sensitive):")
-    password = form.text_input("Password:", type="password")
+    userid = st.text_input("UserID(Case-sensitive):")
+    password = st.text_input("Password:", type="password")
     
     st.write("Upload the Image of Person to Register them in Database")
     st.write("Example image: ")
@@ -156,7 +155,7 @@ def main():
         st.write("Please Upload an image")
         st.stop()
         
-    name = form.text_input("Enter the person's name: ")
+    name = st.text_input("Enter the person's name: ")
     
     if form.form_submit_button('Submit'):
         if len(name) == 0:
@@ -183,10 +182,11 @@ def main():
 
   elif choice == "Admin Registeration":
     st.write("**Enter the Credentials to register as an Admin**")
-    userid = st.text_input("UserID(Case-sensitive):")
-    password = st.text_input("Password:", type="password")
+    form = st.form(key='reg')
+    userid = form.text_input("UserID(Case-sensitive):")
+    password = form.text_input("Password:", type="password")
 
-    if st.button("Proceed"):
+    if form.form_submit_button("Proceed"):
         if len(userid) == 0 or len(password) == 0:
             st.write("Please enter valid credentials")
             st.stop()
