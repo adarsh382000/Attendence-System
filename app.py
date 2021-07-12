@@ -194,8 +194,8 @@ def main():
                 elif option == 'Delete record':
                     name = st.text_input("Enter the person's name to delete: ")
                     if st.button("Delete"):
-                        res = db.embd.delete_one({'_id' : name})
-                        st.write("Deleted" + str(res.deleted_count))
+                        res = db.embd.find({'_id' : name})
+                        st.write("Deleted" + str(len(list(res))))
                 elif option == 'Select':
                     st.write("Please select")
                     
