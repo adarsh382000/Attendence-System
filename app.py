@@ -157,7 +157,7 @@ def main():
         
     name = st.text_input("Enter the person's name: ")
     
-    if form.form_submit_button('Submit'):
+    if st.button('Submit'):
         if len(name) == 0:
             st.write("Enter a valid name")
             st.stop()
