@@ -161,21 +161,21 @@ def main():
                 st.session_state.useridss = userid
                 st.session_state.passwordss = password
                 name = st.text_input("Enter the person's name: ")
-                if len(name) == 0:
-                    st.write("Enter a valid name!")
-                    st.stop()
                 st.write("Upload the Image of Person to Register them in Database")
                 st.write("Example image: ")
                 st.image('Image.jpg',use_column_width = 'auto')
                 uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
-                file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-                image = cv2.imdecode(file_bytes, 1)
-                if st.button("Upload"):
-                    res = add_new_person(name,image)
-                    if res == 0:
-                        st.write("Successfully Registered")
-                    else:
-                        st.write("No face found, try another image")     
+                if uploaded_file is not None:
+                    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+                    image = cv2.imdecode(file_bytes, 1)
+                    if st.button("Upload"):
+                        res = add_new_person(name,image)
+                        if res == 0:
+                            st.write("Successfully Registered")
+                        else:
+                            st.write("No face found, try another image")
+                else:
+                    st.write("Upload image")
             else:
                 st.write("Wrong Password!, try again")
         else:
