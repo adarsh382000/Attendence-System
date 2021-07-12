@@ -172,7 +172,7 @@ def main():
                         st.write("**Database:**")
                         k = 1
                         for i in li:
-                            st.write(str(k) + '.' + i['Name'])
+                            st.write(str(k) + '. ' + i['Name'])
                             k+=1
                 elif option == 'Insert record':
                     name = st.text_input("Enter the person's name to insert: ")
