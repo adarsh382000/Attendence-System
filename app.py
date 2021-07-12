@@ -161,7 +161,7 @@ def main():
                 st.session_state.useridss = userid
                 st.session_state.passwordss = password
                 #session_state2 = SessionState.get(checkboxed=False)
-                option = st.selectbox("Select admin operation: ",('Show database','Insert record','Delete record'))
+                option = st.selectbox("Select admin operation: ",('Select','Show database','Insert record','Delete record'))
                 if option == 'Show database':
                     cursor = db.embd.find()
                     li = list(cursor)
@@ -169,9 +169,11 @@ def main():
                         st.write("Empty Database")
                         st.stop()
                     else:
-                        st.write("**Database**")
+                        st.write("**Database:**")
+                        k = 1
                         for i in li:
-                            st.write(i['Name'])
+                            st.write(str(k) + '.' + i['Name'])
+                            k+=1
                 elif option == 'Insert record':
                     name = st.text_input("Enter the person's name to insert: ")
                     st.write("Upload the Image of Person to Register them in Database")
@@ -191,8 +193,12 @@ def main():
                         st.write("Upload image")
                 elif option == 'Delete record':
                     name = st.text_input("Enter the person's name to delete: ")
-                    db.embd.remove({'_id' : name})
-                    st.write("Successfully deleted")
+                    if st.button("Delete"):
+                        db.embd.remove({'_id' : name})
+                        st.write("Successfully deleted")
+                elif option == 'Select':
+                    st.write("Please select")
+                    
             else:
                 st.write("Wrong Password!, try again")
         else:
