@@ -122,7 +122,7 @@ def main():
          res = test_person(image)
          if type(res) == dict:
            #st.write("Attendence Marked of: ")
-           tot = sum(res.values())
+           tot = max(res.values()) + 0.10
            st.write(tot)
            for i,j in res.items():
                 my_bar = st.progress(0)
