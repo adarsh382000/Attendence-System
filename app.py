@@ -126,9 +126,9 @@ def main():
            for i,j in res.items():
                 my_bar = st.progress(0)
                 st.write(i)
-                st.write(j/tot)
+                st.write(1-(j/tot))
                 st.write(j)
-                my_bar.progress((j/tot))
+                my_bar.progress(1-(j/tot))
          elif res == -1:
            st.write("No face found, try another image")
          else:
