@@ -140,8 +140,9 @@ def main():
   
   elif choice == "Admin Login":
     st.write("**Enter your Credentials**")
-    userid = st.text_input("UserID(Case-sensitive):")
-    password = st.text_input("Password:", type="password")
+    form = st.form(key='login')
+    userid = form.text_input("UserID(Case-sensitive):")
+    password = form.text_input("Password:", type="password")
     
     st.write("Upload the Image of Person to Register them in Database")
     st.write("Example image: ")
@@ -155,9 +156,9 @@ def main():
         st.write("Please Upload an image")
         st.stop()
         
-    name = st.text_input("Enter the person's name: ")
+    name = form.text_input("Enter the person's name: ")
     
-    if st.button("Proceed"):
+    if form.form_submit_button('Submit'):
         if len(name) == 0:
             st.write("Enter a valid name")
             st.stop()
