@@ -137,7 +137,8 @@ def main():
     else:
      st.write("Please select an image")
      st.stop()
-  
+        
+  """
   elif choice == "Admin Login":
     st.write("**Enter your Credentials**")
     userid = st.text_input("UserID(Case-sensitive):")
@@ -179,7 +180,48 @@ def main():
         else:
             st.write('UserID not registered, goto Admin Registration tab')
 
+  """
 
+  elif choice == "Admin Login":
+    st.session_state.useridss = ''
+    st.session_state.passwordss = ''
+    session_state = SessionState.get(checkboxed=False)
+    st.write("**Enter the Credentials to login**")
+    form = st.form(key='login')
+    userid = form.text_input("UserID(Case-sensitive):", value = st.session_state.useridss)
+    password = form.text_input("Password:", type="password", value = st.session_state.passwordss)
+    
+    if form.form_submit_button("Login") or session_state.checkboxed:
+        cursor = db.Admins.find({'_id' : userid})
+        li = list(cursor)
+        for i in li:
+            pas = i['password']
+        if len(li) > 0:
+            if pas == password:
+                session_state.checkboxed = True
+                st.session_state.useridss = userid
+                st.session_state.passwordss = password
+                name = st.text_input("Enter the person's name: ")
+                if len(name) == 0:
+                    st.write("Enter a valid name!")
+                    st.stop()
+                st.write("Upload the Image of Person to Register them in Database")
+                st.write("Example image: ")
+                st.image('Image.jpg',use_column_width = 'auto')
+                uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
+                file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+                image = cv2.imdecode(file_bytes, 1)
+                if st.button("Upload"):
+                    res = add_new_person(name,image)
+                    if res == 0:
+                        st.write("Successfully Registered")
+                    else:
+                        st.write("No face found, try another image")     
+            else:
+                st.write("Wrong Password!, try again")
+        else:
+            st.write('UserID not registered, goto Admin Registration tab')
+    
   elif choice == "Admin Registeration":
     st.write("**Enter the Credentials to register as an Admin**")
     form = st.form(key='reg')
