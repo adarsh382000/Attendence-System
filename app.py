@@ -198,7 +198,7 @@ def main():
                         if res.deleted_count == 1:
                             st.write("Succesfully deleted")
                         else:
-                        st.write('Record not found")
+                            st.write('Record not found")
                 elif option == 'Select':
                     st.write("Please select")
                     
