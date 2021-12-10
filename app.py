@@ -28,7 +28,7 @@ train_model = st.secrets["train_model"]
 def face_recognition_model():
     try:
         gdown.download(train_model, 'model.h5', quiet=False)
-        model = keras.models.load_model('model.h5')
+        model = keras.models.load_model('model.h5',compile=False)
         return model
     except Exception:
         st.write("Error loading predictive model")
