@@ -14,7 +14,8 @@ import SessionState
 
 def data():
     try:
-       client = MongoClient(st.secrets["db_address"])
+       db_address='mongodb+srv://adarsh:382000@cluster0.ri62m.mongodb.net/Attendence?retryWrites=true&w=majority'
+       client = MongoClient(db_address)
        db = client['Attendence']
        return db
     except Exception:
@@ -22,7 +23,7 @@ def data():
        st.stop()
 
 db = data()
-train_model = st.secrets["train_model"]
+train_model = 'https://drive.google.com/uc?export=download&id=1oOqvp0xR01oW_1jLnzY5jubkf7vR0B29'
 
 #@st.cache(suppress_st_warning=True)
 def face_recognition_model():
