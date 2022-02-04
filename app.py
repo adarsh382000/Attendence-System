@@ -24,7 +24,7 @@ def data():
 db = data()
 train_model = st.secrets['train_model']
 
-@st.cache(suppress_st_warning=True)
+#@st.cache(suppress_st_warning=True)
 def face_recognition_model():
     try:
         gdown.download(train_model, 'model.h5', quiet=False)
