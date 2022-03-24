@@ -9,4 +9,5 @@ pymongo
 gdown
 dnspython
 gitpython
+cmake
 dlib
