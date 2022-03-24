@@ -10,6 +10,7 @@ from pymongo import MongoClient
 import pymongo
 import streamlit as st
 import gdown
+from git import Repo
 import SessionState
 
 def data():
@@ -36,7 +37,7 @@ def face_recognition_model():
 
 model = face_recognition_model()
 
-!git clone https://github.com/aqeelanwar/MaskTheFace.git
+Repo.clone_from('https://github.com/aqeelanwar/MaskTheFace.git','MaskTheFace')
 os.chdir(/MaskTheFace)
 
 def detect_face(ad):
