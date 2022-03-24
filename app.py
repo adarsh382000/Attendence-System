@@ -11,7 +11,7 @@ import pymongo
 import streamlit as st
 import gdown
 from git import Repo
-import SessionState
+import /app/prototype/SessionState
 
 def data():
     try:
