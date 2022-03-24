@@ -9,5 +9,6 @@ pymongo
 gdown
 dnspython
 gitpython
+scikit-image
 cmake
 dlib
