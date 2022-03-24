@@ -174,7 +174,7 @@ def main():
          else:
            st.write("Database empty")
          
-         st.write('Masked dataset****************************************************************************")
+         st.write("Masked dataset****************************************************************************")
                  
          res_mask = test_person_mask(image)
             if type(res_mask) == dict:
