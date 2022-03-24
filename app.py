@@ -36,6 +36,9 @@ def face_recognition_model():
 
 model = face_recognition_model()
 
+!git clone https://github.com/aqeelanwar/MaskTheFace.git
+os.chdir(/MaskTheFace)
+
 def detect_face(ad):
   detector = mtcnn.MTCNN()
   return detector.detect_faces(ad)
@@ -56,53 +59,87 @@ def get_face(img, box):
     face = img[y1:y2, x1:x2]
     return face, (x1, y1), (x2, y2)
 
-def add_new_person(name,img):
+def face(img):
   l2 = Normalizer()
   img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
   res = detect_face(img)
   if res:
-    res = max(res, key = lambda b: b['box'][2] *b['box'][3])
-    img, _, _ = get_face(img,res['box'])
+      res = max(res, key = lambda b: b['box'][2] *b['box'][3])
+      img, _, _ = get_face(img,res['box'])
+      enc = get_emb(img)
+      enc = l2.transform(enc.reshape(1,-1))[0]
+      enc = enc.tolist()
+      return enc
+  else:
+    return -1
+
+def facemask(img):
+    l2 = Normalizer()
+    img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
     enc = get_emb(img)
     enc = l2.transform(enc.reshape(1,-1))[0]
     enc = enc.tolist()
-    db.embd.insert_one({'Name' : name, 'embedding' : enc})
-    return 0
-  else:
-    return -1
+    return enc
 
-def test_person(img):
-  new_enc = {}
+def masktheface(img):
+  cv2.imwrite('no_mask.jpg',img)
+  !python mask_the_face.py --path no_mask.jpg --mask_type 'cloth'
+  img = cv2.imread('no_mask_cloth.jpg')
+  return img
+
+def add_new_person(name,img):
   l2 = Normalizer()
   img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-  res = detect_face(img)
-  if res:
-    res = max(res, key = lambda b: b['box'][2] *b['box'][3])
-    img,_,_ = get_face(img,res['box'])
-    enc = get_emb(img)
-    enc = l2.transform(enc.reshape(1,-1))[0]
-    name  = 'unknown'
-    dist = float('inf')
-    cursor = db.embd.find()
-    li = list(cursor)
-    dist = 1000000.0
-    name = "unknown"
-    dic = {}
-    if len(li) > 0:
-        for i in li:
-            encdatabase = i['embedding']
-            encdatabase = np.array(encdatabase)
-            d = cosine(enc,encdatabase)
-            dic[i['Name']] = d 
-            if d < 0.5 and d < dist:
-                name = i['Name']
-                dist = d
-        return dic
-    else:
-        return -2
+  mimg = masktheface(img)
+  enc = face(img)
+  if enc == -1:
+    return -1
+  enc_mask = facemask(mimg)
+  db.embd.insert_one({'Name' : name, 'embedding' : enc})
+  db.embdmask.insert_one({'Name' : name, 'embedding' : enc_mask})
+  return 0
+
+def test_person_nomask(img):
+  enc = face(img)
+  if enc == -1:
+    return -1
+  cursor = db.embd.find()
+  li = list(cursor)
+  dist = 1000000.0
+  name = "unknown"
+  dic = {}
+  if len(li) > 0:
+    for i in li:
+      encdatabase = i['embedding']
+      encdatabase = np.array(encdatabase)
+      d = cosine(enc,encdatabase)
+      dic[i['Name']] = d 
+      if d < 0.5 and d < dist:
+        name = i['Name']
+        dist = d
+    return dic
+  else:
+    return -2
+
+def test_person_mask(img):
+  enc = facemask(img)
+  cursor = db.embdmask.find()
+  li = list(cursor)
+  dist = 1000000.0
+  name = "unknown"
+  dic = {}
+  if len(li) > 0:
+    for i in li:
+      encdatabase = i['embedding']
+      encdatabase = np.array(encdatabase)
+      d = cosine(enc,encdatabase)
+      dic[i['Name']] = d 
+      if d < 0.5 and d < dist:
+        name = i['Name']
+        dist = d
+    return dic
   else:
     return -1
-
 
 def main():
   st.title("Face Recognition Based Attendence System Prototype")
@@ -120,7 +157,7 @@ def main():
      file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
      image = cv2.imdecode(file_bytes, 1)
      if st.button("Proceed"):
-         res = test_person(image)
+         res = test_person_nomask(image)
          if type(res) == dict:
            #st.write("Attendence Marked of: ")
            tot = max(res.values()) + 0.10
@@ -133,6 +170,20 @@ def main():
                 my_bar.progress(1-(j/tot))
          elif res == -1:
            st.write("No face found, try another image")
+         else:
+           st.write("Database empty")
+        
+        res_mask = test_person_mask(image)
+         if type(res_mask) == dict:
+           #st.write("Attendence Marked of: ")
+           tot = max(res_mask.values()) + 0.10
+           for i,j in res_mask.items():
+                st.write("------------------------------------------------------------------------------")
+                st.write("Name: " + i)
+                st.write("Distance(lower is better): " + str(j))
+                st.write("Similarity(higher is better): ")
+                my_bar = st.progress(0)
+                my_bar.progress(1-(j/tot))
          else:
            st.write("Database empty")
     else:
