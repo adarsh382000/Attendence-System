@@ -37,8 +37,8 @@ def face_recognition_model():
 
 model = face_recognition_model()
 
-Repo.clone_from('https://github.com/aqeelanwar/MaskTheFace.git','MaskTheFace')
-os.chdir('MaskTheFace')
+Repo.clone_from('https://github.com/aqeelanwar/MaskTheFace.git','/app/prototype/MaskTheFace')
+os.chdir('/app/prototype/MaskTheFace')
 
 def detect_face(ad):
   detector = mtcnn.MTCNN()
