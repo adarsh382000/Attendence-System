@@ -84,7 +84,7 @@ def facemask(img):
 
 def masktheface(img):
   cv2.imwrite('no_mask.jpg',img)
-  !python mask_the_face.py --path no_mask.jpg --mask_type 'cloth'
+  os.system('python mask_the_face.py --path /content/no_mask.jpg --mask_type "cloth"')
   img = cv2.imread('no_mask_cloth.jpg')
   return img
 
