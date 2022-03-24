@@ -13,7 +13,7 @@ import streamlit as st
 import gdown
 from git import Repo
 sys.path.insert(1, '/app/protoype')
-import SessionState
+import SessionState.py
 
 def data():
     try:
