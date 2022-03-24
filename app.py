@@ -3,6 +3,7 @@ import mtcnn
 import cv2
 import numpy as np
 import os
+import sys
 import random
 from sklearn.preprocessing import Normalizer
 from scipy.spatial.distance import cosine
@@ -11,7 +12,8 @@ import pymongo
 import streamlit as st
 import gdown
 from git import Repo
-import /app/prototype/SessionState
+sys.path.insert(1, '/app/protoype')
+import SessionState
 
 def data():
     try:
