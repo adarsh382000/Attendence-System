@@ -37,7 +37,7 @@ def face_recognition_model():
 
 model = face_recognition_model()
 
-if not os.path.exists('/app/prototype/MaskTheFace/):
+if not os.path.exists('/app/prototype/MaskTheFace/'):
    Repo.clone_from('https://github.com/aqeelanwar/MaskTheFace.git','/app/prototype/MaskTheFace')
 os.chdir('/app/prototype/MaskTheFace')
 
