@@ -37,7 +37,8 @@ def face_recognition_model():
 
 model = face_recognition_model()
 
-Repo.clone_from('https://github.com/aqeelanwar/MaskTheFace.git','/app/prototype/MaskTheFace')
+if not os.path.exists('/app/prototype/MaskTheFace/):
+   Repo.clone_from('https://github.com/aqeelanwar/MaskTheFace.git','/app/prototype/MaskTheFace')
 os.chdir('/app/prototype/MaskTheFace')
 
 def detect_face(ad):
@@ -151,7 +152,7 @@ def main():
   if choice == "Mark Attendence":
     st.write("**Please use image with frontal angle and image should be well lit**")
     st.write("Example image:")
-    st.image('Image.jpg',use_column_width = 'auto')
+    st.image('/app/prototype/Image.jpg',use_column_width = 'auto')
     uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
     
     if uploaded_file is not None:
@@ -232,7 +233,7 @@ def main():
                     name = st.text_input("Enter the person's name to insert: ")
                     st.write("Upload the Image of Person to Register them in Database")
                     st.write("Example image: ")
-                    st.image('Image.jpg',use_column_width = 'auto')
+                    st.image('/app/prototype/Image.jpg',use_column_width = 'auto')
                     uploaded_file = st.file_uploader("Upload image", type=['jpeg', 'png', 'jpg', 'webp'])
                     if uploaded_file is not None:
                         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
