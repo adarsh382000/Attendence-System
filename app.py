@@ -177,7 +177,7 @@ def main():
          st.write("Masked dataset****************************************************************************")
                  
          res_mask = test_person_mask(image)
-            if type(res_mask) == dict:
+         if type(res_mask) == dict:
                #st.write("Attendence Marked of: ")
                tot = max(res_mask.values()) + 0.10
                for i,j in res_mask.items():
@@ -187,8 +187,8 @@ def main():
                     st.write("Similarity(higher is better): ")
                     my_bar = st.progress(0)
                     my_bar.progress(1-(j/tot))
-            else:
-                st.write("Database empty")
+         else:
+               st.write("Database empty")
     else:
      st.write("Please select an image")
      st.stop()
