@@ -1,6 +1,4 @@
 import os
-os.system('apt-get update && apt-get install -y cmake')
-
 from tensorflow import keras
 import mtcnn
 import cv2
