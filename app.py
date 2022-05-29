@@ -1,8 +1,10 @@
+import os
+os.system('apt-get update && apt-get install -y cmake')
+
 from tensorflow import keras
 import mtcnn
 import cv2
 import numpy as np
-import os
 import random
 from sklearn.preprocessing import Normalizer
 from scipy.spatial.distance import cosine
@@ -12,6 +14,8 @@ import streamlit as st
 import gdown
 from git import Repo
 import SessionState
+
+os.system('apt-get update && apt-get install -y cmake')
 
 def data():
     try:
